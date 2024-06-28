@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
-    public static void main(String[] args) throws Exception {
 
+    public static void main(String[] args) throws Exception {
 
 
         List<Horse> horses = List.of(
@@ -21,7 +21,7 @@ public class Main {
 
         Hippodrome hippodrome = new Hippodrome(horses);
 
-        logger.info(String.format("Начало скачек. Количество участников: %s",horses.size()));
+        logger.info(String.format("Начало скачек. Количество участников: %s", horses.size()));
 
 
         for (int i = 0; i < 50; i++) {
@@ -32,7 +32,7 @@ public class Main {
 
         String winnerName = hippodrome.getWinner().getName();
         System.out.println(winnerName + " wins!");
-        logger.info(String.format("Окончание скачек. Победитель: %s",winnerName));
+        logger.info(String.format("Окончание скачек. Победитель: %s", winnerName));
     }
 
     private static void watch(Hippodrome hippodrome) throws Exception {

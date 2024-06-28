@@ -19,40 +19,41 @@ import static org.mockito.Mockito.times;
 class HippodromeTest {
 
     @Mock
-    Hippodrome hippodrome ;
+    Hippodrome hippodrome;
 
     @Mock
     Horse horse;
 
 
     @Test
-    void construtor_null_test(){
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> {
+    void construtor_null_test() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Hippodrome(null);
-        },"test fail");
+        }, "test fail");
         assertEquals("Horses cannot be null.", exception.getMessage());
 
     }
 
     @Test
-    void contructor_blank_test(){
+    void contructor_blank_test() {
 
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,()->{
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new Hippodrome(new ArrayList<>());
         });
 
-        assertEquals("Horses cannot be empty.",e.getMessage());
+        assertEquals("Horses cannot be empty.", e.getMessage());
 
     }
+
     @Test
     void getHorsesTest() {
         ArrayList<Horse> horses = new ArrayList<>();
-        for (int i=0;i<30;i++){
-           // horses.add(new Horse(String.format("horse%s",i),i+1));
+        for (int i = 0; i < 30; i++) {
+            // horses.add(new Horse(String.format("horse%s",i),i+1));
             horses.add(horse);
         }
         hippodrome = new Hippodrome(horses);
-        assertEquals(horses,hippodrome.getHorses());
+        assertEquals(horses, hippodrome.getHorses());
 
     }
 
@@ -60,24 +61,24 @@ class HippodromeTest {
     @Test
     void move_allHorses_Test() {
         ArrayList<Horse> horses = new ArrayList<>();
-        for (int i=0;i<50;i++){
+        for (int i = 0; i < 50; i++) {
             horses.add(horse);
         }
         Hippodrome hippodrome = new Hippodrome(horses);
         hippodrome.move();
-        Mockito.verify(horse,times(10)).move();
+        Mockito.verify(horse, times(10)).move();
 
     }
 
     @Test
     void getWinner() {
         ArrayList<Horse> horses = new ArrayList<>();
-        for (int i=0;i<30;i++){
-            horses.add(new Horse(String.format("horse%s",i),i+1,i+2));
+        for (int i = 0; i < 30; i++) {
+            horses.add(new Horse(String.format("horse%s", i), i + 1, i + 2));
 
         }
         Hippodrome hippodrome1 = new Hippodrome(horses);
-        assertEquals(hippodrome1.getWinner(),horses.stream().max(Comparator.comparing(Horse::getDistance)).get());
+        assertEquals(hippodrome1.getWinner(), horses.stream().max(Comparator.comparing(Horse::getDistance)).get());
 
 
     }
